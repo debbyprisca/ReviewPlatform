@@ -158,12 +158,10 @@ const InstitutionDetailPage = () => {
               <div>
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900">Guest Reviews</h2>
-                  <button
-                    onClick={() => navigate(`/write-review/${id}`)}
-                    className="btn btn-primary"
-                  >
+                <span className="text-lg font-semibold text-primary-600">
                     Write a Review
-                  </button>
+                  </span>
+
                 </div>
 
                                {/* Write a review */}
@@ -301,12 +299,10 @@ const InstitutionDetailPage = () => {
                     <p className="text-gray-500 mb-6">
                       Be the first to leave a review for {institution.name}.
                     </p>
-                    <button
-                      onClick={() => navigate(`/write-review/${id}`)}
-                      className="btn btn-primary"
-                    >
-                      Write a Review
-                    </button>
+                   <span className="text-lg font-semibold text-primary-600">
+                        Write a Review
+                      </span>
+
                   </div>
                 )}
               </div>
@@ -421,12 +417,12 @@ const InstitutionDetailPage = () => {
                 </div>
               </div>
               
-              <button
+              {/* <button
                 onClick={() => navigate(`/write-review/${id}`)}
                 className="btn btn-primary w-full"
               >
                 Write a Review
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
