@@ -18,6 +18,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 
 
+
 const InstitutionDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();

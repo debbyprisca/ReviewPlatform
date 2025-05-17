@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TrustSealContract, Address} from './TrustSealContractABI.jsx'
+
+import {ethers} from "ethers";
 
 const AddInstitutionPage = () => {
   const navigate = useNavigate();
@@ -10,7 +13,8 @@ const AddInstitutionPage = () => {
     address:'',
     location: '',
     imageUrl: '',
-    tags: '',
+    tags: [],
+    instAddress: ''
   });
 
   const handleChange = (e) => {
@@ -18,8 +22,17 @@ const AddInstitutionPage = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const Provider = new ethers.BrowserProvider(window.ethereum)
+    const Signer = await Provider.getSigner()
+
+    const addInstitution = new ethers.Contract(Address,TrustSealContract,Signer )
+    const tx = await addInstitution.registerInstitution(form.name,form.address,form.location,form.imageUrl,form.tags,form.instAddress)
+    const receipt =  await tx.wait();
+    const Hash = receipt.hash
+
+
     // Submit logic here (e.g. call API or save to state/store)
     console.log('Institution added:', form);
     navigate('/institutions'); // Redirect after submission
@@ -74,8 +87,20 @@ const AddInstitutionPage = () => {
           required
           className="input w-full"
         />
-        <button type="submit" className="btn bg-primary-600 text-white hover:bg-primary-700 w-full">
+  
+        <input
+          type="text"
+          name="instAddress"
+          placeholder="instAddress"
+          value={form.instAddress}
+          onChange={handleChange}
+          required
+          className="input w-full"
+        />
+      
+        <button onClick={handleSubmit} type="submit" className="btn bg-primary-600 text-white hover:bg-primary-700 w-full">
           Submit Institution
+
         </button>
       </form>
     </div>
