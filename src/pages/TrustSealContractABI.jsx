@@ -484,4 +484,4 @@ export const TrustSealContract = [
 	}
 ]
 
-export const Address = "0x57a384da1eb2A06d392d6566C8bA9c0199d10071"
+export const Address = "0x2C6963A8E1006FAb148e4C64c109d8af064e821D"
